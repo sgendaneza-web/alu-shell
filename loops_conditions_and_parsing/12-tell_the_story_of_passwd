@@ -2,5 +2,5 @@
 # Read /etc/passwd 
 while IFS=: read -r username password userid groupid _ home shell
 do
-  echo "The user $username is part of the $groupid gang, lives in $home and rides $shell. USER ID's place is protected by the passcode $password, more info about the user here: $userid"
+  echo "The user $username is part of the $groupid gang, lives in $home and rides $shell. ${userid}'s place is protected by the passcode $password, more info about the user here: $username"
 done < /etc/passwd
