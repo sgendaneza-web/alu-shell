@@ -1,2 +1,2 @@
 #!/bin/bash
-echo "$(compgen -v) $(compgen -A export) $(compgen -A function)"
+set
