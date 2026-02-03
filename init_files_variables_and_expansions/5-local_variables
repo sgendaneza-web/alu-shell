@@ -1,2 +1,2 @@
 #!/bin/bash
-set VAR1='value1' PATH='/usr/bin:/bin' my_function='() { echo Hello; }'
+echo "$(printenv)$(compgen -v)$(compgen -A function)"
