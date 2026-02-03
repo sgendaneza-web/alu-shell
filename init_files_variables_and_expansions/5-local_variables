@@ -1,2 +1,2 @@
 #!/bin/bash
-echo "$(printenv)$(compgen -v)$(compgen -A function)"
+echo "$(compgen -v) $(compgen -A export) $(compgen -A function)"
