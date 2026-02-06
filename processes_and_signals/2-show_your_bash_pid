@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+#this is the bash pid
+#shellcheck disable=SC2009
+ps auxf | grep --color=never '[b]ash'
