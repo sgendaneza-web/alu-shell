@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+#easy PID
+for pid in /proc/[0-9]*; do
+    pname=$(<"$pid/comm")
+    if [[ $pname == *bash* ]]; then
+        echo "${pid##*/} $pname"
+    fi
+done
