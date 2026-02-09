@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+#beheading
+kill "$(pgrep -f 7-highlander)"
