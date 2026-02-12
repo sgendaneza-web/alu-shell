@@ -1,12 +1,3 @@
 #!/usr/bin/env bash
-# Group visitors by IP and HTTP status code, count occurrences
-awk '
-{
-    count[$1" "$9]++
-}
-END {
-    # Save counts into an array for sorting
-    for (key in count) {
-        printf "%d %s\n", count[key], key
-    }
-}' apache-access.log | sort -nr
+# Group visitors by IP and HTTP status cod
+awk '{print $1,$9}' apache-access.log | sort | uniq -c | sort -r
