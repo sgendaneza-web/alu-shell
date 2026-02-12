@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+#the file to manage
 while true
 do
     echo "I am alive!" >> /tmp/my_process
