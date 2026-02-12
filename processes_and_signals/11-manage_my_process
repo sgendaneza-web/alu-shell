@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+PID_FILE="/var/run/my_process.pid"
+PROCESS="./manage_my_process"
+
+case "$1" in
+    start)
+        if [ -f "$PID_FILE" ]; then
+            exit 0
+        fi
+        $PROCESS &
+        echo $! > "$PID_FILE"
+        echo "manage_my_process started"
+        ;;
+    stop)
+        if [ -f "$PID_FILE" ]; then
+            kill "$(cat "$PID_FILE")"
+            rm -f "$PID_FILE"
+            echo "manage_my_process stopped"
+        fi
+        ;;
+    restart)
+        if [ -f "$PID_FILE" ]; then
+            kill "$(cat "$PID_FILE")"
+            rm -f "$PID_FILE"
+        fi
+        $PROCESS &
+        echo $! > "$PID_FILE"
+        echo "manage_my_process restarted"
+        ;;
+    *)
+        echo "Usage: manage_my_process {start|stop|restart}"
+        ;;
+esac
