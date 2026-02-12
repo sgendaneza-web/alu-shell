@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #managing the process
 PID_FILE="/var/run/my_process.pid"
-PROCESS="$(pwd)/manage_my_process"   # Absolute path to avoid checker confusion
+PROCESS="$(pwd)/manage_my_process"  
 
 case "$1" in
     start)
@@ -9,7 +9,6 @@ case "$1" in
             echo "manage_my_process is already running"
             exit 0
         fi
-        # Start the process in background
         nohup "$PROCESS" >/dev/null 2>&1 &
         echo $! > "$PID_FILE"
         echo "manage_my_process started"
@@ -24,8 +23,14 @@ case "$1" in
         fi
         ;;
     restart)
-        $0 stop
-        $0 start
+        # Stop quietly
+        if [ -f "$PID_FILE" ] && kill -0 "$(cat "$PID_FILE")" 2>/dev/null; then
+            kill "$(cat "$PID_FILE")" 2>/dev/null
+            rm -f "$PID_FILE"
+        fi
+        # Start process
+        nohup "$PROCESS" >/dev/null 2>&1 &
+        echo $! > "$PID_FILE"
         echo "manage_my_process restarted"
         ;;
     *)
